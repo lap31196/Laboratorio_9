@@ -1,0 +1,105 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdbool.h>
+
+int backup=0; 
+int puntosa =0;
+int puntosb =0;
+//FUNCIONES
+void CONTADOR(){
+    PD0==0;
+    PD1==0;
+    PD2==0;
+    PD3==0;
+    PD4==0;
+    PD5==0;
+    PD6==0;
+    DDRD = 0xff;
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <stdbool.h>
+
+int backup=0; 
+int puntosa =0;
+int puntosb =0;
+//FUNCIONES
+void CONTADOR(){
+    PD0==0;
+    PD1==0;
+    PD2==0;
+    PD3==0;
+    PD4==0;
+    PD5==0;
+    PD6==0;
+    DDRD = 0xff;
+    DDRB = 0XFF;
+    DDRC = 0xff;
+    while (1){
+
+        if (PD0==1)
+        {
+            DDRB&=1<<DDRB;
+            puntosa +=1;
+            backup =1;
+        }
+        if (PD1==1)
+        {
+            DDRB&=2<<DDRB;
+            puntosa +=2;
+            backup =2;
+        }
+        if (PD2==1)
+        {
+            DDRB&=3<<DDRB;
+            puntosa +=3;
+            backup =3;
+        }
+        if (PD3==1)
+        {
+            DDRC&=1<<DDRC;
+            puntosb +=1;
+            backup =4;
+        }
+        if (PD4==1)
+        {
+            DDRC&=2<<DDRC;
+            puntosb +=2;
+            backup =5;
+        }
+        if (PD5==1)
+        {
+            DDRC&=3<<DDRC;
+            puntosb +=3;
+            backup =6;
+        }
+        if (PD6==1)
+        {
+            if(backup =1){
+                DDRB|=1<<DDRB;
+                puntosa -=1;
+            }
+            if(backup =2){
+                DDRB|=2<<DDRB;
+                puntosa -=2;
+            }
+            if(backup =3){
+                DDRB|=3<<DDRB;
+                puntosa -=3;
+            }
+            if(backup =4){
+                DDRC|=1<<DDRC;
+                puntosb -=1;
+            }
+            if(backup =5){
+                DDRC|=2<<DDRC;
+                puntosb -=2;
+            }
+            if(backup =6){
+                DDRC|=3<<DDRC;
+                puntosb -=3;
+            }
+        }
+    }
+}

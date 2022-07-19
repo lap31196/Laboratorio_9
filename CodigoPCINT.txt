@@ -1,0 +1,31 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+
+
+void interrupt_PCINT0_Init()
+{
+    cli();
+    PCICR |= B00000001;
+    PCMSK0 |= B00001111;
+    sei();
+}
+
+ISR(PCINT0_vect)
+{
+    //codigo 4 botoneras equipo local
+}
+
+void interrupt_PCINT1_Init()
+{
+    cli();
+    PCICR |= B00000010;
+    PCMSK1 |= B00001111;
+    sei();
+}
+
+
+ISR(PCINT1_vect)
+{
+    //codigo 4 botoneras equipo visitante
+}
